@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by aohana
@@ -108,9 +109,9 @@ public class FeedController {
 
         List<Recipe> recipes = new ArrayList<>();
 
-        addRecipesForUser(new User("12345678", "Ben", "tomato,past", "gluten,banana", false), recipes);
+        addRecipesForUser(new User(UUID.randomUUID(), "Ben", "tomato,past", "gluten,banana", false), recipes);
 
-        addRecipesForUser(new User("1234567", "Morag", "rice,beans", "gluten,meat", true), recipes);
+        addRecipesForUser(new User(UUID.randomUUID(), "Morag", "rice,beans", "gluten,meat", true), recipes);
 
         return findLeanestRecipe(recipes);
 

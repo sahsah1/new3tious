@@ -11,6 +11,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.UUID;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
@@ -28,7 +30,7 @@ public class New3AppApplicationTests {
     public void feedMoragTest() {
 
         Recipe recipe = this.restTemplate.postForObject("http://localhost:" + port + "/feedMorag",
-                new User("1234567", "Morag", "rice,beans", "gluten,meat", true),
+                new User(UUID.randomUUID(), "Morag", "rice,beans", "gluten,meat", true),
                 Recipe.class);
 
         assertNotNull(recipe);
@@ -39,7 +41,7 @@ public class New3AppApplicationTests {
     public void feedBenTest() {
 
         Recipe recipe = this.restTemplate.postForObject("http://localhost:" + port + "/feedBen",
-                new User("12345678", "Ben", "tomato,past", "gluten,banana", false),
+                new User(UUID.randomUUID(), "Ben", "tomato,past", "gluten,banana", false),
                 Recipe.class);
 
         assertNotNull(recipe);
@@ -58,7 +60,7 @@ public class New3AppApplicationTests {
     @Test
     public void getRichFoodsTest() {
 
-        Food food = this.restTemplate.getForObject("http://localhost:" + port + "/getRichFoods", Food.class, new User("12345678", "Ben", "tomato past", "gluten,banana", false));
+        Food food = this.restTemplate.getForObject("http://localhost:" + port + "/getRichFoods", Food.class, new User(UUID.randomUUID(), "Ben", "tomato past", "gluten,banana", false));
 
         assertNotNull(food);
         assertEquals(200, food.getAdditionalProperties().get("status"));

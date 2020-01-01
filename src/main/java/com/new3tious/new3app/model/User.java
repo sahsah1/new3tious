@@ -1,20 +1,33 @@
 package com.new3tious.new3app.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotBlank;
+import java.util.UUID;
+
 /**
  * Created by aohana
  */
 public class User {
 
-    private String id;
+    @JsonProperty("id")
+    private UUID id;
+    @NotBlank
+    @JsonProperty("name")
     private String name;
+    @NotBlank
+    @JsonProperty("favoriteIngredients")
     private String favoriteIngredients;
+    @NotBlank
+    @JsonProperty("allergies")
     private String allergies;
+    @JsonProperty("onDiet")
     private Boolean onDiet;
 
     public User() {
     }
 
-    public User(String id, String name, String favoriteIngredients, String allergies, Boolean onDiet) {
+    public User(UUID id, String name, String favoriteIngredients, String allergies, Boolean onDiet) {
         this.id = id;
         this.name = name;
         this.favoriteIngredients = favoriteIngredients;
@@ -22,11 +35,11 @@ public class User {
         this.onDiet = onDiet;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
